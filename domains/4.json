@@ -1,0 +1,9 @@
+{
+  "label": "4",
+  "subdomain": "4.labs.ly",
+  "category": "numeric",
+  "reserved": true,
+  "owner": "admin@labs.ly",
+  "cname": "labs-ly.github.io",
+  "createdAt": "2026-10-05"
+}

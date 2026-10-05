@@ -1,0 +1,25 @@
+{
+  "name": "labs-ly",
+  "version": "1.0.0",
+  "private": true,
+  "description": "labs.ly - free subdomains for real projects. Forked and adapted from js-org/js.org.",
+  "type": "commonjs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "validate": "node scripts/validate-entries.js",
+    "build:index": "node scripts/build-index.js",
+    "build:site": "node scripts/build-site.js",
+    "sync:dns": "node scripts/sync-cloudflare-dns.js",
+    "validate:domains": "node scripts/validate-domains.js",
+    "smoke": "npm run validate && npm run validate:domains && npm run build:index"
+  },
+  "keywords": [
+    "labs.ly",
+    "subdomains",
+    "cloudflare",
+    "github-pages"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$comment": "Reserved subdomain labels for labs.ly. All comparisons are lowercase. Add one label per string.",
+  "words": [
+    "1", "2", "3", "4", "5", "10",
+    "www", "api", "admin", "administrator", "root", "mail", "email", "smtp", "imap", "pop", "pop3",
+    "ns", "ns1", "ns2", "ns3", "dns", "dns1", "dns2", "mx", "ftp", "sftp", "cdn", "static",
+    "assets", "img", "images", "media",
+    "dev", "develop", "development", "staging", "stage", "test", "testing", "qa", "uat",
+    "prod", "production", "beta", "alpha",
+    "internal", "intranet", "private", "secure", "ssl", "vpn", "proxy", "gateway", "router", "firewall",
+    "cloudflare", "cf", "status", "monitor", "metrics", "grafana", "prometheus", "kibana", "logging",
+    "support", "help", "helpdesk", "docs", "doc", "wiki", "blog", "news", "forum", "community",
+    "shop", "store", "pay", "payments", "payment", "billing", "invoice", "checkout", "cart",
+    "login", "signin", "signup", "signout", "auth", "oauth", "sso", "account", "accounts",
+    "profile", "user", "users", "dashboard", "panel", "cpanel", "webmail", "autodiscover", "autoconfig",
+    "lab", "labs", "labs-ly", "labsly", "official", "abuse", "security", "noc", "soc", "csirt",
+    "pro", "vip", "hub", "ai", "app",
+    "postmaster", "hostmaster", "webmaster", "registry", "whois", "legal", "privacy", "terms", "dmca",
+    "google", "gmail", "youtube", "facebook", "instagram", "whatsapp", "apple", "icloud",
+    "microsoft", "outlook", "github", "gitlab", "amazon", "aws", "netflix",
+    "paypal", "stripe", "visa", "mastercard", "twitter", "tiktok", "coinbase", "binance"
+  ]
+}

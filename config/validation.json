@@ -1,0 +1,31 @@
+{
+  "domain": "labs.ly",
+  "cnamesDir": "cnames",
+  "indexFile": "data/active.json",
+  "minLabelLength": 2,
+  "maxLabelLength": 40,
+  "labelPattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",
+  "allowedSchemes": ["https:"],
+  "allowHttp": false,
+  "requestTimeoutMs": 10000,
+  "maxRedirects": 5,
+  "requireGithubRepo": false,
+  "githubApiBase": "https://api.github.com",
+  "blockedUrlPatterns": [
+    "sedoparking.com",
+    "parkingcrew.net",
+    "afternic.com",
+    "dan.com",
+    "hugedomains.com",
+    "godaddy.com/domainsearch",
+    "namecheap.com/domains",
+    "buydomains.com",
+    "undeveloped.com"
+  ],
+  "blockedHosts": [
+    "localhost",
+    "127.0.0.1",
+    "0.0.0.0",
+    "example.com"
+  ]
+}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>labs.ly - free subdomains for real projects</title>
+  <meta name="description" content="labs.ly provides free labs.ly subdomains to real, live projects that respect our Acceptable Use Policy." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23f7df1e'/><text x='50' y='70' font-size='60' font-family='monospace' text-anchor='middle' fill='%230d0d0d'>l.</text></svg>" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">l.</span>
+        <span class="brand-name">labs<span class="brand-dot">.</span>ly</span>
+      </a>
+      <nav class="site-nav">
+        <a href="#domains">Domains</a>
+        <a href="#request">Request</a>
+        <a href="#aup">AUP</a>
+        <a href="https://github.com/js-org/js.org" rel="noopener">Inspired by js.org</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Free subdomains for real projects</p>
+        <h1>Get a <span class="hl">name.labs.ly</span><br />subdomain for your project.</h1>
+        <p class="lede">
+          labs.ly maps friendly subdomains to real, live GitHub Pages projects - no ads, no spam,
+          no parked pages. Add one file to <code>cnames/</code>, open a pull request, and once it is
+          merged Cloudflare wires up the CNAME automatically.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#request">Request a subdomain</a>
+          <a class="btn btn-ghost" href="#domains">Browse active domains</a>
+        </div>
+        <p class="stat">Active subdomains: <strong id="domain-count">...</strong></p>
+      </div>
+    </section>
+
+    <section id="domains" class="section">
+      <div class="wrap">
+        <h2>Active subdomains</h2>
+        <p class="section-lede">Every entry below passed automated validation and points at a live project.</p>
+
+        <input
+          id="search"
+          class="search"
+          type="search"
+          placeholder="Filter by name..."
+          aria-label="Filter subdomains"
+          autocomplete="off"
+        />
+
+        <div class="table-wrap">
+          <table class="domains">
+            <thead>
+              <tr>
+                <th scope="col">Subdomain</th>
+                <th scope="col">Target</th>
+              </tr>
+            </thead>
+            <tbody id="domain-rows">
+              <tr><td colspan="2" class="muted">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <noscript>
+          <p class="muted">Enable JavaScript to browse the live list of subdomains.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <section id="request" class="section section-alt">
+      <div class="wrap">
+        <h2>Request a subdomain</h2>
+        <ol class="steps">
+          <li>Fork this repository.</li>
+          <li>Create a file at <code>cnames/yourname.labs.ly</code> containing a single line: the HTTPS URL of your live project.</li>
+          <li>Open a pull request against <code>main</code>. CI validates format, reserved words, GitHub repo existence and live reachability.</li>
+          <li>Once reviewed and merged, the Cloudflare CNAME is created automatically and your subdomain goes live.</li>
+        </ol>
+        <p>
+          Full instructions live in
+          <a href="https://github.com/labs-ly/labs-ly/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.
+        </p>
+      </div>
+    </section>
+
+    <section id="aup" class="section">
+      <div class="wrap">
+        <h2>Acceptable Use Policy</h2>
+        <p class="section-lede">
+          labs.ly exists to help real, honest projects. By requesting or using a subdomain you agree
+          to this policy. Violations lead to removal of the subdomain and the associated DNS record.
+        </p>
+
+        <h3>1. Real, live projects only</h3>
+        <p>
+          The target must be a working website for a genuine project. Placeholder pages, empty
+          repositories, link shorteners and parked or for-sale pages are not allowed.
+        </p>
+
+        <h3>2. No advertising, tracking or spam</h3>
+        <p>
+          No ad networks, pop-ups, forced redirects, affiliate spam, crypto faucets, or aggressive
+          tracking. Content must be suitable for a general audience.
+        </p>
+
+        <h3>3. No abusive or illegal content</h3>
+        <p>
+          No harassment, hate speech, sexual content involving minors, malware, phishing, fraud,
+          piracy, or anything that violates applicable law or the rights of others.
+        </p>
+
+        <h3>4. No impersonation or brand abuse</h3>
+        <p>
+          Do not request names that impersonate labs.ly, its maintainers, or any third-party brand.
+          Reserved and misleading names are rejected automatically.
+        </p>
+
+        <h3>5. Security and integrity</h3>
+        <p>
+          Do not use a subdomain for credential harvesting, malware distribution, botnets, or to
+          misrepresent your relationship with labs.ly. We may suspend any subdomain at any time to
+          protect the domain's reputation.
+        </p>
+
+        <h3>6. Enforcement and takedown</h3>
+        <p>
+          We review reports of abuse and, where warranted, remove the entry, revoke the DNS record
+          and block future requests. Report abuse via the repository's issue tracker.
+        </p>
+
+        <h3>7. No warranty</h3>
+        <p>
+          Subdomains are provided free of charge, as-is, with no guarantee of availability. labs.ly
+          is not affiliated with or endorsed by js.org.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p>labs.ly - free subdomains for real projects.</p>
+      <p class="muted">
+        Forked and adapted from the
+        <a href="https://github.com/js-org/js.org" rel="noopener">js.org</a> project.
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

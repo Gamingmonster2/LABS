@@ -1,0 +1,9 @@
+{
+  "label": "app",
+  "subdomain": "app.labs.ly",
+  "category": "luxury",
+  "reserved": true,
+  "owner": "admin@labs.ly",
+  "cname": "labs-ly.github.io",
+  "createdAt": "2026-10-05"
+}

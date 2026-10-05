@@ -1,0 +1,41 @@
+name: Validate entries
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'cnames/**'
+      - 'domains/**'
+      - 'scripts/**'
+      - 'config/**'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate newly added entries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Validate reserved domain registry
+        run: npm run validate:domains
+
+      - name: Validate new entry files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+        run: npm run validate
