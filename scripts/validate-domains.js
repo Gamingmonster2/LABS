@@ -21,6 +21,8 @@
 const fs = require('node:fs');
 const path = require('node:path');
 
+const { isEntryFile, deriveLabel } = require('./lib/entry-file');
+
 const ROOT = path.resolve(__dirname, '..');
 
 const OWNER = 'admin@labs.ly';
@@ -85,12 +87,11 @@ function scanCnames(config, reservedSet, errors) {
     return;
   }
 
-  const suffix = `.${config.domain}`;
   for (const name of fs.readdirSync(cnamesDir)) {
-    if (!name.endsWith(suffix)) {
+    if (!isEntryFile(name)) {
       continue;
     }
-    const label = name.slice(0, -suffix.length).toLowerCase();
+    const label = deriveLabel(name).toLowerCase();
     if (reservedSet.has(label)) {
       errors.push(`cnames/${name}: label "${label}" is reserved and cannot be claimed`);
     }

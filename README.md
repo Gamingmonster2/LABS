@@ -1,22 +1,20 @@
 # labs.ly
 
-Free subdomains for **real, live projects** - forked and adapted from
-[`js-org/js.org`](https://github.com/js-org/js.org).
+Free subdomains for **real, live projects**.
+
+Repository: <https://github.com/Gamingmonster2/LABS>
 
 `labs.ly` gives your project a friendly `yourname.labs.ly` address that points at your
 GitHub Pages site (or any HTTPS URL). Submissions are validated automatically, and once a
 pull request is merged, Cloudflare creates the DNS record for you.
-
-> labs.ly is not affiliated with, endorsed by, or connected to js.org. This repository only
-> reuses the open-source ideas and tooling of that project.
 
 ---
 
 ## How it works
 
 1. A contributor adds **one file** to the `cnames/` directory.
-2. The file name is the requested subdomain, e.g. `myproject.labs.ly`.
-3. The file content is a **single line**: the HTTPS target URL.
+2. The file name is the requested subdomain, e.g. `myproject.json`.
+3. The file content is a small JSON object: `{"target": "https://..."}`.
 4. A pull request runs the validation engine over **only the newly added files**.
 5. When the pull request is merged to `main`, the deploy workflow:
    - rebuilds `data/active.json`,
@@ -25,7 +23,7 @@ pull request is merged, Cloudflare creates the DNS record for you.
 
 ```text
 cnames/
-└── myproject.labs.ly      # contains: https://github.com/owner/repo
+└── myproject.json      # contains: {"target": "https://github.com/owner/repo"}
 ```
 
 ---
@@ -53,17 +51,23 @@ cnames/
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full walkthrough. In short:
 
-1. Fork this repository.
-2. Create `cnames/yourname.labs.ly` containing your project's HTTPS URL on a single line.
-3. Open a pull request against `main`.
-4. Fix anything CI reports, then wait for review.
-5. After merge, your subdomain is live within a few minutes.
+1. Fork this repository: <https://github.com/Gamingmonster2/LABS>.
+2. Create a file in `cnames/` named after your subdomain, e.g. `myproject.json`.
+3. Put your project link inside it as JSON:
+
+   ```json
+   {"target": "https://username.github.io/project"}
+   ```
+
+4. Open a pull request against `main`.
+5. Fix anything CI reports, then wait for review.
+6. After merge, your subdomain is live within a few minutes.
 
 ### Entry rules
 
 - File name: lowercase letters, numbers and inner hyphens only, 2-40 characters,
-  followed by `.labs.ly`.
-- Content: exactly one `https://` URL.
+  followed by `.json`.
+- Content: a JSON object with a single `"target"` key holding one `https://` URL.
 - GitHub targets must point to a repository that really exists.
 - The target must be reachable and must not redirect to a parked or for-sale domain.
 - The label must not appear in `config/reserved-words.json` or the reserved registry in `domains/`.
@@ -136,7 +140,7 @@ Requires Node.js 18 or newer.
 npm run validate
 
 # or validate specific files
-node scripts/validate-entries.js cnames/myproject.labs.ly
+node scripts/validate-entries.js cnames/myproject.json
 
 # validate the reserved domain registry
 npm run validate:domains
@@ -196,5 +200,5 @@ The same policy is published on the landing page (`index.html`, section `#aup`) 
 
 ## Credits and license
 
-Structure and concept inspired by [js.org](https://github.com/js-org/js.org), which is
-maintained by its own contributors. This fork is released under the [MIT License](LICENSE).
+labs.ly is maintained at <https://github.com/Gamingmonster2/LABS> and released under the
+[MIT License](LICENSE).

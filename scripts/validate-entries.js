@@ -4,13 +4,12 @@
  * validate-entries.js
  * Entry point for the labs.ly validation engine.
  *
- * Simplification over js.org: it validates ONLY the entry files added in the
- * current pull request. The full catalog is never re-checked, which keeps CI
- * fast and predictable.
+ * It validates ONLY the entry files added in the current pull request. The full
+ * catalog is never re-checked, which keeps CI fast and predictable.
  *
  * Usage:
- *   node scripts/validate-entries.js                 # auto-detect new files via git
- *   node scripts/validate-entries.js cnames/a.labs.ly cnames/b.labs.ly
+ *   node scripts/validate-entries.js              # auto-detect new files via git
+ *   node scripts/validate-entries.js cnames/a.json cnames/b.json
  */
 
 const fs = require('node:fs');
@@ -18,6 +17,7 @@ const path = require('node:path');
 
 const { validateEntry } = require('./lib/validate-entry');
 const { getAddedFiles } = require('./lib/git-changes');
+const { isEntryFile } = require('./lib/entry-file');
 
 function loadJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -29,17 +29,13 @@ async function main() {
   const reservedConfig = loadJson(path.join(root, 'config', 'reserved-words.json'));
   const reservedWords = new Set((reservedConfig.words || []).map((w) => w.toLowerCase()));
 
-  const cnamesDir = path.join(root, config.cnamesDir);
-
-  const suffix = `.${config.domain}`;
-
   // Explicit file arguments win; otherwise isolate the newly added files.
   let files = process.argv.slice(2);
   if (files.length > 0) {
     files = files.map((f) => (path.isAbsolute(f) ? f : path.resolve(process.cwd(), f)));
   } else {
     files = getAddedFiles(config.cnamesDir)
-      .filter((f) => path.basename(f).endsWith(suffix))
+      .filter((f) => isEntryFile(path.basename(f)))
       .map((f) => path.join(root, f));
   }
 

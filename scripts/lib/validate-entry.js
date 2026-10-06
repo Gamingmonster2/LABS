@@ -7,25 +7,14 @@
  * Checks performed (no third-party APIs):
  *   1. Label format + length
  *   2. Reserved-word blocklist
- *   3. File content is exactly one absolute HTTPS URL
+ *   3. File content is a JSON object with a "target" URL
  *   4. GitHub repository existence (when the target is a GitHub repo)
  *   5. Live HTTP reachability + parked-domain redirect heuristics
  */
 
-const fs = require('node:fs');
-const path = require('node:path');
+const { deriveLabel, parseEntryFile } = require('./entry-file');
 
 const USER_AGENT = 'labs-ly-validator/1.0 (+https://labs.ly)';
-
-/**
- * Derive the subdomain label from the file name.
- * Accepts both "myproject.labs.ly" and bare "myproject".
- */
-function normalizeLabel(fileName, domain) {
-  const base = path.basename(fileName);
-  const suffix = `.${domain}`;
-  return base.endsWith(suffix) ? base.slice(0, -suffix.length) : base;
-}
 
 /**
  * Confirm a GitHub repository exists by calling the public REST API.
@@ -118,7 +107,7 @@ async function checkReachability(rawUrl, config) {
 async function validateEntry(file, config, reservedWords) {
   const errors = [];
   const warnings = [];
-  const label = normalizeLabel(file, config.domain);
+  const label = deriveLabel(file);
 
   // --- 1. Label checks -----------------------------------------------------
   if (!label || label.length < config.minLabelLength || label.length > config.maxLabelLength) {
@@ -137,26 +126,13 @@ async function validateEntry(file, config, reservedWords) {
   }
 
   // --- 3. Content check ----------------------------------------------------
-  let raw = '';
-  try {
-    raw = fs.readFileSync(file, 'utf8');
-  } catch (error) {
-    errors.push(`could not read file: ${error.message}`);
-    return { file, label, errors, warnings };
+  const parsed = parseEntryFile(file);
+  for (const parseError of parsed.errors) {
+    errors.push(parseError);
   }
 
-  const lines = raw
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  if (lines.length !== 1) {
-    errors.push('file must contain exactly one target URL on a single line');
-  }
-
-  const target = lines[0] || '';
+  const target = parsed.target;
   if (!target) {
-    errors.push('file does not contain a target URL');
     return { file, label, errors, warnings };
   }
 
@@ -191,7 +167,6 @@ async function validateEntry(file, config, reservedWords) {
 
 module.exports = {
   validateEntry,
-  normalizeLabel,
   checkGithubRepo,
   checkReachability
 };

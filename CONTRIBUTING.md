@@ -11,24 +11,24 @@ advertising, tracking, spam, or content that violates the policy, it will be rej
 ## 1. Fork and clone
 
 ```bash
-git clone https://github.com/<you>/labs-ly.git
-cd labs-ly
+git clone https://github.com/<you>/LABS.git
+cd LABS
 ```
 
 ## 2. Add your entry file
 
 Create a single file inside `cnames/`:
 
-- **File name:** `<yourname>.labs.ly`
+- **File name:** `<yourname>.json` (for example `myproject.json`)
   - lowercase `a-z`, `0-9` and inner `-` only
-  - 2 to 40 characters before `.labs.ly`
+  - 2 to 40 characters before `.json`
   - must not be a reserved word (see `config/reserved-words.json` and the `domains/` registry)
-- **Content:** exactly one line, a single `https://` URL to a live project
+- **Content:** a small JSON object with one `"target"` key pointing to a live `https://` URL
 
-Example - `cnames/myproject.labs.ly`:
+Example - `cnames/myproject.json`:
 
-```text
-https://github.com/your-user/your-project
+```json
+{"target": "https://username.github.io/project"}
 ```
 
 If the target is a GitHub repository, labs.ly points the CNAME at `<owner>.github.io`
@@ -55,9 +55,9 @@ This runs the same validation the CI will run, then rebuilds the front-end index
 
 | Check | Fails when |
 | --- | --- |
-| Format | name has invalid characters, wrong length, or is not `*.labs.ly` |
+| Format | name has invalid characters, wrong length, or is not `*.json` |
 | Reserved words | label is in `config/reserved-words.json` |
-| Content | file is empty, has multiple lines, or is not a valid absolute URL |
+| Content | file is empty, has invalid JSON, or is missing a valid `target` URL |
 | Scheme | URL is not `https://` |
 | GitHub repo | target is a GitHub repo that does not exist |
 | Reachability | target is unreachable or returns an error status |

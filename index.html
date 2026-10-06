@@ -19,7 +19,7 @@
         <a href="#domains">Domains</a>
         <a href="#request">Request</a>
         <a href="#aup">AUP</a>
-        <a href="https://github.com/js-org/js.org" rel="noopener">Inspired by js.org</a>
+        <a href="https://github.com/Gamingmonster2/LABS" rel="noopener">GitHub</a>
       </nav>
     </div>
   </header>
@@ -31,8 +31,8 @@
         <h1>Get a <span class="hl">name.labs.ly</span><br />subdomain for your project.</h1>
         <p class="lede">
           labs.ly maps friendly subdomains to real, live GitHub Pages projects - no ads, no spam,
-          no parked pages. Add one file to <code>cnames/</code>, open a pull request, and once it is
-          merged Cloudflare wires up the CNAME automatically.
+          no parked pages. Add one small file to <code>cnames/</code>, open a pull request, and once
+          it is merged Cloudflare wires up the CNAME automatically.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#request">Request a subdomain</a>
@@ -78,15 +78,47 @@
     <section id="request" class="section section-alt">
       <div class="wrap">
         <h2>Request a subdomain</h2>
-        <ol class="steps">
-          <li>Fork this repository.</li>
-          <li>Create a file at <code>cnames/yourname.labs.ly</code> containing a single line: the HTTPS URL of your live project.</li>
-          <li>Open a pull request against <code>main</code>. CI validates format, reserved words, GitHub repo existence and live reachability.</li>
-          <li>Once reviewed and merged, the Cloudflare CNAME is created automatically and your subdomain goes live.</li>
+        <p class="section-lede">
+          Anyone can get a free <strong>name.labs.ly</strong> subdomain. It only takes four simple
+          steps, and you do not need any coding experience.
+        </p>
+
+        <ol class="steps steps-friendly">
+          <li>
+            <strong>Fork the repository.</strong>
+            Click the <em>Fork</em> button to copy the project into your own GitHub account.
+          </li>
+          <li>
+            <strong>Create your file.</strong>
+            Go to the <code>cnames/</code> folder and create a new file named after your subdomain,
+            for example <code>myname.json</code>.
+          </li>
+          <li>
+            <strong>Add your link.</strong>
+            Put your project link inside the file using this simple format:
+            <pre class="code-block"><code>{"target": "https://username.github.io/project"}</code></pre>
+          </li>
+          <li>
+            <strong>Open a Pull Request.</strong>
+            Send the request, and as soon as it is merged your subdomain goes live automatically!
+          </li>
         </ol>
+
+        <div class="repo-cta">
+          <a
+            class="btn btn-primary btn-lg"
+            href="https://github.com/Gamingmonster2/LABS"
+            target="_blank"
+            rel="noopener"
+          >
+            Open the repository on GitHub
+          </a>
+          <p class="muted">Tap the button above to start - everything happens on the GitHub page.</p>
+        </div>
+
         <p>
-          Full instructions live in
-          <a href="https://github.com/labs-ly/labs-ly/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.
+          Prefer the full walkthrough? Read
+          <a href="https://github.com/Gamingmonster2/LABS/blob/main/CONTRIBUTING.md" rel="noopener">CONTRIBUTING.md</a>.
         </p>
       </div>
     </section>
@@ -138,8 +170,7 @@
 
         <h3>7. No warranty</h3>
         <p>
-          Subdomains are provided free of charge, as-is, with no guarantee of availability. labs.ly
-          is not affiliated with or endorsed by js.org.
+          Subdomains are provided free of charge, as-is, with no guarantee of availability.
         </p>
       </div>
     </section>
@@ -149,8 +180,8 @@
     <div class="wrap footer-inner">
       <p>labs.ly - free subdomains for real projects.</p>
       <p class="muted">
-        Forked and adapted from the
-        <a href="https://github.com/js-org/js.org" rel="noopener">js.org</a> project.
+        Source:
+        <a href="https://github.com/Gamingmonster2/LABS" rel="noopener">https://github.com/Gamingmonster2/LABS</a>
       </p>
     </div>
   </footer>

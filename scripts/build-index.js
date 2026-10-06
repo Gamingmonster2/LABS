@@ -9,6 +9,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
+const { isEntryFile, parseEntryFile } = require('./lib/entry-file');
 
 function loadJson(file) {
   return JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -36,21 +37,15 @@ function main() {
     console.warn(`[labs.ly] Directory "${config.cnamesDir}" not found. Writing an empty index.`);
   }
 
-  const suffix = `.${domain}`;
   const names = fs.existsSync(cnamesDir)
     ? fs
         .readdirSync(cnamesDir)
-        .filter((name) => name.endsWith(suffix) && fs.statSync(path.join(cnamesDir, name)).isFile())
+        .filter((name) => isEntryFile(name) && fs.statSync(path.join(cnamesDir, name)).isFile())
     : [];
 
   const entries = names.map((name) => {
-    const suffix = `.${domain}`;
-    const label = name.endsWith(suffix) ? name.slice(0, -suffix.length) : name;
-    const target = fs
-      .readFileSync(path.join(cnamesDir, name), 'utf8')
-      .split(/\r?\n/)
-      .map((line) => line.trim())
-      .filter(Boolean)[0] || '';
+    const file = path.join(cnamesDir, name);
+    const { label, target } = parseEntryFile(file);
 
     return {
       subdomain: `${label}.${domain}`,

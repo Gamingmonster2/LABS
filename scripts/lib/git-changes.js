@@ -3,7 +3,7 @@
 /**
  * git-changes.js
  * Isolates ONLY the entry files that were newly added in the current change set.
- * This is the "simplification" over js.org: we never re-validate the whole catalog.
+ * This keeps CI fast: we never re-validate the whole catalog.
  */
 
 const { execFileSync } = require('node:child_process');

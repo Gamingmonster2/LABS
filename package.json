@@ -2,9 +2,13 @@
   "name": "labs-ly",
   "version": "1.0.0",
   "private": true,
-  "description": "labs.ly - free subdomains for real projects. Forked and adapted from js-org/js.org.",
+  "description": "labs.ly - free subdomains for real, live projects.",
   "type": "commonjs",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gamingmonster2/LABS.git"
+  },
   "engines": {
     "node": ">=18"
   },

@@ -6,10 +6,7 @@
   "maxLabelLength": 40,
   "labelPattern": "^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$",
   "allowedSchemes": ["https:"],
-  "allowHttp": false,
   "requestTimeoutMs": 10000,
-  "maxRedirects": 5,
-  "requireGithubRepo": false,
   "githubApiBase": "https://api.github.com",
   "blockedUrlPatterns": [
     "sedoparking.com",
